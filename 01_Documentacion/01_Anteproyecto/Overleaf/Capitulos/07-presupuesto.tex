@@ -1,0 +1,54 @@
+%------------------------PRESUPUESTO--------------------------------
+
+\begin{landscape}
+\makeatletter
+\let\ps@plain\ps@mylandscape
+\makeatother
+\pagestyle{mylandscape}
+
+\chapter{Presupuesto}\label{presupuesto}
+\thispagestyle{mylandscape}
+\small
+\setlength{\tabcolsep}{5pt}
+
+El siguiente presupuesto corresponde a un prototipo único de validación de concepto, con precios de referencia en COP para componentes individuales adquiridos en el mercado internacional. Los importes se reproducen con el separador de miles empleado en el documento fuente.
+
+\noindent
+\begin{longtable}{@{}p{4.6cm}p{6.2cm}>{\centering\arraybackslash}p{1.8cm}>{\raggedleft\arraybackslash}p{3.0cm}@{}}
+\caption{Presupuesto estimado del prototipo}
+\label{tab:presupuesto}\\
+\toprule
+\textbf{Componente} & \textbf{Función en el sistema} & \textbf{Cantidad} & \textbf{Costo estimado (COP)} \\
+\midrule
+\endfirsthead
+
+\multicolumn{4}{@{}l@{}}{\textit{Tabla \thetable\ (continuación)}} \\
+\toprule
+\textbf{Componente} & \textbf{Función en el sistema} & \textbf{Cantidad} & \textbf{Costo estimado (COP)} \\
+\midrule
+\endhead
+
+INMP441 (MEMS I2S) & Sensor acústico primario & 1 & \$15.785 \\
+MAX30102 & Sensor PPG para oximetría y referencia de pulso (I2C) & 1 & \$9.758 \\
+MPU6050 (GY-521) & Acelerómetro para SCG y referencia de movimiento (I2C) & 1 & \$14.578 \\
+ESP32-S3 & Microcontrolador principal (BLE/WiFi, DSP) & 1 & \$39.627 \\
+LDOs, componentes pasivos, ferritas & Acondicionamiento de alimentación & Varios & \$15.000 \\
+Batería LiPo + módulo de carga & Alimentación portátil & 1 & \$11.200 \\
+Carcasa / campana acústica & Estructura mecánica e impresión 3D & 1 & \$20.000 \\
+Baquela punto a punto, 20x20\,cm & Placa de circuito & 1 & \$2.600 \\
+Botones capacitivos y misceláneos & Interfaz de usuario & 3 & \$8.000 \\
+\midrule
+\multicolumn{3}{r}{\textbf{Total estimado}} & \textbf{\$136.548} \\
+\bottomrule
+\end{longtable}
+
+El costo total estimado del prototipo se ubica en COP 136.548. No incluye herramientas de laboratorio de uso compartido, como osciloscopio y estación de soldadura, ni el tiempo de desarrollo.
+
+\clearpage
+\makeatletter
+\let\ps@plain\ufps@plain@orig
+\makeatother
+\pagestyle{plain}
+\end{landscape}
+
+% !TeX root = ../main.tex

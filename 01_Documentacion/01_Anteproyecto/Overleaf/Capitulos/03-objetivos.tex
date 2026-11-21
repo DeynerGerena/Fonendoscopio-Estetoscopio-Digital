@@ -1,0 +1,21 @@
+\chapter{Objetivos}\label{Objetivos}
+
+\section{Objetivo general}
+
+Desarrollar un prototipo de fonendoscopio digital que tenga las características de diferenciación entre sonidos cardíacos y sonidos pulmonares, así como una función de amplificación general de audio, como base para su futura aplicación en telemedicina.
+
+\section{Objetivos específicos}
+
+\begin{itemize}
+    \item Diseñar la arquitectura de hardware del sistema de adquisición multimodal ---canal acústico, canal óptico PPG y canal acelerométrico--- con base en los componentes seleccionados, totalmente compatibles con la plataforma del microcontrolador elegido.
+
+    \item Implementar un esquema de cancelación activa de ruido de dos etapas: un filtro primario sobre el canal de audio y un filtro secundario disparado por la referencia de movimiento del acelerómetro (ejes X/Y), para reducir el artefacto de ruido ambiental y de manipulación del dispositivo.
+
+    \item Desarrollar la interfaz de usuario del dispositivo, incluyendo la selección de los tres modos de operación: auscultación cardíaca, auscultación pulmonar y amplificación de audio general.
+
+    \item Validar de forma preliminar el funcionamiento del prototipo mediante pruebas de banco, comparando la frecuencia cardíaca estimada a partir del canal acústico y del canal de seismocardiografía (SCG) contra la frecuencia obtenida por el canal PPG como referencia.
+
+    \item Documentar los resultados, alcances y limitaciones del prototipo desarrollado como insumo para futuras iteraciones orientadas a telemedicina.
+\end{itemize}
+
+% !TeX root = ../main.tex

@@ -1,0 +1,36 @@
+\chapter*{Introducción}\label{Introduccion}
+\addcontentsline{toc}{chapter}{Introducción}
+
+La auscultación constituye una herramienta fundamental en la valoración inicial de los pacientes. Los sistemas cardiovascular y respiratorio son los principales órganos evaluados mediante esta técnica, y el fonendoscopio analógico es uno de los instrumentos de mayor uso en la práctica clínica \cite{MedlinePlusAuscultacion2025}. Su empleo depende en gran medida de la experiencia y de la agudeza auditiva del profesional, además de verse afectado por el ruido ambiental y por la imposibilidad de registrar, procesar o transmitir directamente los sonidos auscultados. Estas limitaciones motivan la mejora del instrumento biomédico tradicional.
+
+Durante la auscultación torácica pueden presentarse simultáneamente componentes correspondientes a los sonidos cardíacos y pulmonares. Esta superposición constituye un problema de procesamiento de señales, pues ambas fuentes pueden interferirse y dificultar su análisis individual. Diferentes trabajos han abordado la reducción de esta interferencia mediante filtrado adaptativo, métodos estadísticos y técnicas de separación de fuentes \citeA{Iyer1986,Hadjileontiadis1997,Hadjileontiadis1998,Pourazad2005,Chien2006}. Entre las técnicas empleadas se encuentra la Transformada Discreta Wavelet (DWT), cuyo análisis multirresolución permite representar una señal en diferentes escalas y obtener componentes asociados a distintas bandas de frecuencia \citeA{Mallat1998,AlNaggar2018}. También se han explorado enfoques basados en Análisis de Componentes Independientes (ICA), aunque algunos requieren más de un canal de adquisición \citeA{Pourazad2005,Chien2006}.
+
+El desarrollo de sistemas de auscultación digital permite complementar estas técnicas de procesamiento con capacidades de adquisición, almacenamiento y transmisión. En este contexto, el trabajo de Castro Ramírez sobre un estetoscopio digital demostró la viabilidad de emplear procesamiento digital y DWT con análisis multirresolución para separar componentes cardíacos y pulmonares \citeA{CastroRamirez2010}. Dicho trabajo obtuvo una separación más efectiva de la componente cardíaca que de la pulmonar, evidenciando tanto el potencial como las limitaciones de este tipo de procesamiento.
+
+En respuesta a esta problemática, el presente proyecto propone el desarrollo de un prototipo de fonendoscopio digital orientado a la adquisición y al procesamiento de señales fisiológicas mediante una arquitectura multimodal. El sistema integra un sensor acústico MEMS para la captura de sonidos, un sensor PPG para obtener una referencia independiente de la frecuencia cardíaca y un acelerómetro para capturar vibraciones mecánicas e identificar artefactos asociados al movimiento. A partir de estas señales se busca implementar técnicas de procesamiento digital que permitan diferenciar, de manera preliminar, los sonidos cardíacos de los pulmonares, además de incorporar un modo de amplificación general de audio.
+
+Como proyección futura, el análisis de patrones sobre los registros podría apoyar el estudio de clasificación de sonidos cardíacos \citeA{Kocuvan2015}; esta línea no forma parte de los resultados del presente anteproyecto.
+
+El proyecto se plantea como un desarrollo académico y experimental de validación de concepto. No incluye diagnóstico automatizado, clasificación patológica mediante inteligencia artificial ni validación clínica en pacientes. La telemedicina se considera una dirección futura y no un entregable central de esta fase. El documento presenta la progresión del diseño, la justificación, los objetivos, el marco de referencia, la metodología, el cronograma y el presupuesto necesarios para alcanzar los objetivos propuestos.
+
+\section{Conceptos clave}
+
+\begin{description}
+
+\item[Fonendoscopio.] También conocido como estetoscopio, es un instrumento de auscultación que conduce los sonidos internos del cuerpo, producidos por el corazón, los pulmones y los vasos, hasta los oídos del profesional. En su versión acústica es un dispositivo pasivo formado por campana o diafragma, tubo y olivas. En su versión digital, la señal acústica se convierte en datos que pueden amplificarse, filtrarse, visualizarse, almacenarse y transmitirse \cite{Littmann2020}.
+
+\item[Puntos de auscultación.] Zonas del tórax donde se apoya el fonendoscopio para percibir con mayor claridad el sonido de cada estructura. En la cara anterior se usan los focos aórtico, pulmonar, tricuspídeo y mitral; en la cara posterior se emplean tres zonas en cada hemitórax: superior, media e inferior \cite{AlNaggar2018}.
+
+\item[Procesamiento digital de señales (DSP).] Conjunto de técnicas matemáticas aplicadas a señales muestreadas y cuantificadas para extraer, mejorar o modificar su información. En este proyecto incluye filtrado por bandas, diferenciación de sonidos, amplificación, reducción de artefactos y estimación de frecuencia cardíaca.
+
+\item[Micrófono MEMS.] Transductor acústico fabricado en silicio, de tamaño milimétrico y fácil integración con sistemas embebidos. El prototipo considera el INMP441 como sensor acústico principal \cite{INMP441}.
+
+\item[Fotopletismografía (PPG).] Técnica óptica no invasiva que mide variaciones del volumen sanguíneo a partir de la interacción de la luz con el tejido. En el proyecto se emplea como referencia independiente de frecuencia cardíaca \cite{MAX30102}.
+
+\item[Seismocardiografía (SCG).] Registro de las vibraciones mecánicas generadas por la actividad cardíaca. El acelerómetro aporta además información sobre el movimiento del dispositivo \cite{MPU6050,Centracchio2023}.
+
+\item[Microcontrolador.] Circuito integrado que reúne procesador, memoria y periféricos de entrada y salida, y ejecuta un programa dedicado a una tarea específica.
+
+\end{description}
+
+% !TeX root = ../main.tex

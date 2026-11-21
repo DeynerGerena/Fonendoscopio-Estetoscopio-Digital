@@ -1,0 +1,61 @@
+\chapter{Planteamiento del problema}\label{planteamiento}
+
+\section{Planteamiento del problema}
+
+La auscultación con fonendoscopio analógico continúa siendo una de las técnicas más utilizadas para la valoración inicial de los sistemas cardiovascular y respiratorio. Sin embargo, presenta limitaciones relacionadas con la dependencia de la agudeza auditiva y de la experiencia del clínico, la susceptibilidad al ruido ambiental, la imposibilidad de registrar o transmitir la señal auscultada y la poca compatibilidad con esquemas de atención remota. Estas limitaciones adquieren mayor relevancia en contextos de telemedicina, donde la auscultación remota en tiempo real o el envío de los sonidos para una valoración especializada requiere sistemas capaces de adquirir y transmitir digitalmente la información \cite{MedlinePlusAuscultacion2025,Littmann2020}.
+
+Estas limitaciones se hacen particularmente relevantes cuando se pretende analizar señales cardíacas y pulmonares superpuestas. Durante la auscultación torácica, los sonidos producidos por ambos sistemas pueden estar presentes simultáneamente, de modo que la señal registrada en un único punto puede contener componentes de diferentes fuentes. Esta interferencia ha sido estudiada mediante filtrado adaptativo y procesamiento estadístico \citeA{Iyer1986,Hadjileontiadis1997}. Los métodos basados en transformada Wavelet permiten aprovechar la representación multirresolución para identificar y reducir componentes superpuestos \citeA{Hadjileontiadis1998,AlNaggar2018,Mallat1998}, mientras que las técnicas de ICA han sido exploradas para separar fuentes en registros simultáneos \citeA{Pourazad2005,Chien2006}.
+
+El trabajo de Castro Ramírez constituye un antecedente directo por desarrollar un estetoscopio digital orientado a la separación de señales cardíacas y pulmonares mediante DWT \citeA{CastroRamirez2010}. En dicho trabajo se observó que la componente cardíaca podía aislarse con mayor efectividad, mientras que la señal pulmonar conservaba componentes cardíacos residuales. El estudio evidenció también la importancia de las características del sistema de adquisición, la frecuencia de muestreo y la capacidad de procesamiento del hardware para implementar algoritmos de separación en tiempo cercano al real.
+
+Diferenciar un sonido cardíaco de un sonido pulmonar cuando ambos se encuentran superpuestos en una misma región torácica representa un desafío de procesamiento de señales, pues el fonendoscopio convencional no permite realizar esta separación de manera sistemática y cuantificable. El desarrollo de sensores MEMS y de sistemas inalámbricos de adquisición permite plantear nuevas alternativas para digitalizar la auscultación y procesar las señales fisiológicas obtenidas.
+
+A partir de esta problemática surge la siguiente pregunta de investigación:
+
+\begin{center}
+\emph{¿Es factible desarrollar un fonendoscopio digital inalámbrico basado en tecnología de sensor MEMS que permita diferenciar los sonidos cardíacos de los sonidos pulmonares?}
+\end{center}
+
+\section{Justificación}\label{justificacion}
+
+\subsection{Justificación teórica}
+
+La separación de sonidos cardíacos y pulmonares constituye un problema de procesamiento de señales biomédicas abordado mediante diferentes metodologías. Los estudios basados en filtrado adaptativo han demostrado que la interferencia producida por los sonidos cardíacos puede reducirse mediante algoritmos capaces de adaptarse a las características de la señal adquirida \citeA{Iyer1986,Hadjileontiadis1997,AlNaggar2013,Nersisson2017}. Por otra parte, la transformada Wavelet proporciona una representación simultánea en tiempo y escala que permite analizar señales no estacionarias y separar componentes presentes en diferentes niveles de resolución \citeA{Mallat1998,Hadjileontiadis1998}.
+
+El proyecto permite estudiar y aplicar estos conceptos dentro de una arquitectura de adquisición digital implementada en un sistema embebido. Además, toma como antecedente directo el estetoscopio digital basado en DWT desarrollado por Castro Ramírez, en el cual se evidenció la posibilidad de separar la componente cardíaca y se identificaron limitaciones en la separación de la componente pulmonar \citeA{CastroRamirez2010}. Por lo tanto, el trabajo aporta una aplicación práctica de conceptos de procesamiento digital, adquisición de señales biomédicas, filtrado y sistemas embebidos.
+
+\subsection{Justificación práctica}
+
+El desarrollo de un fonendoscopio digital permite superar algunas limitaciones de la auscultación convencional mediante la adquisición y digitalización de las señales para su posterior procesamiento. Existen equipos comerciales que incorporan amplificación, cancelación activa de ruido, visualización y conexión con plataformas de telemedicina \citeA{Littmann2020,ESC2026}. A diferencia de un instrumento exclusivamente acústico, una plataforma digital permite almacenar, reproducir y procesar las señales. El prototipo propuesto incorpora tres modalidades de adquisición: el canal acústico como fuente principal, el canal PPG como referencia independiente de frecuencia cardíaca y el acelerómetro como fuente de información sobre vibraciones y movimiento.
+
+Esta arquitectura permite realizar pruebas de validación comparando la frecuencia cardíaca estimada a partir de la señal acústica y de la señal de seismocardiografía con la frecuencia obtenida mediante PPG. De esta manera, el proyecto no se limita a comprobar la existencia de una señal acústica, sino que incorpora mecanismos de comparación entre diferentes modalidades de adquisición.
+
+\subsection{Justificación académica y social}
+
+Desde el punto de vista académico, el proyecto integra conocimientos de electrónica, sistemas embebidos, adquisición de señales, procesamiento digital, sensores y comunicaciones inalámbricas en un único desarrollo. Constituye además una evolución respecto a trabajos anteriores de separación de sonidos cardíacos y pulmonares, al incorporar una arquitectura multimodal en lugar de depender exclusivamente de la señal acústica.
+
+Desde el punto de vista social, el desarrollo de herramientas de auscultación digital puede contribuir a futuras soluciones orientadas a escenarios de atención remota. El trabajo de referencia señala la posibilidad de utilizar sistemas embebidos y comunicación para facilitar la consulta de señales médicas por parte de especialistas ubicados en lugares diferentes al sitio donde se realiza el examen \citeA{CastroRamirez2010}. No obstante, el presente proyecto se plantea como un desarrollo académico y experimental: no pretende sustituir el diagnóstico médico ni constituir un dispositivo clínico certificado. Su aporte consiste en establecer una plataforma tecnológica base para futuras investigaciones en auscultación digital, procesamiento de señales biomédicas y telemedicina.
+
+\section{Alcances}\label{alcances}
+
+El alcance se circunscribe a un prototipo funcional de validación de concepto. Se consideran los siguientes alcances:
+
+\begin{itemize}
+    \item Diseño y ensamblaje de un prototipo funcional con los tres canales de sensor ---acústico, PPG y acelerómetro--- integrados sobre una misma plataforma.
+    \item Implementación de los tres modos de operación ---cardíaco, pulmonar y general--- mediante selección por botones capacitivos.
+    \item Implementación de un esquema de cancelación de ruido de dos capas, con evaluación cualitativa y cuantitativa básica de su efecto sobre la señal.
+    \item Pruebas en condiciones controladas sobre los integrantes del proyecto, incluyendo la comparación de frecuencia cardíaca entre canales.
+\end{itemize}
+
+\section{Limitaciones y delimitaciones}\label{LimDelim}
+
+\begin{itemize}
+    \item No se realiza validación clínica en pacientes; las pruebas se limitan a voluntarios sanos y/o condiciones simuladas.
+    \item No se busca ni se declara certificación regulatoria INVIMA, FDA o CE; el prototipo es de uso académico y experimental.
+    \item No se incluye diagnóstico automatizado ni clasificación patológica basada en inteligencia artificial. El sistema entrega diferenciación de fuente de sonido, no interpretación clínica.
+    \item El prototipo no es apto para producción en serie ni para uso en un entorno clínico real sin desarrollo adicional.
+    \item La componente de telemedicina se plantea como dirección futura y no como entregable central de esta fase.
+    \item Las pruebas se limitan a un sujeto de prueba, correspondiente a uno de los integrantes del grupo.
+\end{itemize}
+
+% !TeX root = ../main.tex

@@ -1,0 +1,92 @@
+\chapter{Marco Referencial}\label{MarcoRef}
+
+El marco de referencia reúne los antecedentes científicos y tecnológicos relacionados con el desarrollo de fonendoscopios digitales, la adquisición multimodal de señales fisiológicas, el procesamiento digital de señales biomédicas, la reducción de artefactos y la incorporación de tecnologías inalámbricas. Asimismo, establece las bases teóricas necesarias para comprender el comportamiento de las señales cardíacas y pulmonares y los principios empleados para su adquisición y procesamiento.
+
+De acuerdo con el enfoque del proyecto, el marco se divide en dos componentes: antecedentes y estado del arte, donde se revisan desarrollos previos relacionados con el problema de investigación, y bases teóricas, donde se presentan los fundamentos fisiológicos, electrónicos y de procesamiento de señales que sustentan el diseño del prototipo.
+
+\section{Antecedentes y estado del arte}
+
+El desarrollo de los sistemas digitales de auscultación ha evolucionado desde la amplificación y digitalización de sonidos corporales hacia plataformas capaces de adquirir, procesar, almacenar y transmitir diferentes señales fisiológicas. Esta evolución ha incorporado sensores MEMS, microcontroladores, conectividad inalámbrica y procesamiento digital.
+
+Uno de los antecedentes fundamentales es el trabajo de Castro Ramírez sobre un estetoscopio digital para la separación de señales cardíacas y pulmonares. El estudio abordó la superposición de ambos tipos de sonidos mediante la Transformada Discreta Wavelet y análisis multirresolución, implementados inicialmente en MATLAB y posteriormente en FPGA. Los resultados mostraron una separación efectiva de la señal cardíaca, aunque la señal pulmonar conservó algunos componentes cardíacos \citeA{CastroRamirez2010}. Este trabajo constituye una referencia directa para el problema de diferenciación planteado.
+
+En 2022, Park et al. desarrollaron un fonendoscopio inteligente multimodal para monitoreo cardiovascular, integrando diferentes modalidades de adquisición fisiológica. Este trabajo demuestra la utilidad de combinar información acústica con señales fisiológicas complementarias dentro de un mismo dispositivo \citeA{Park2022}.
+
+La reducción de artefactos de movimiento también constituye una línea relevante. Luu y Dinh estudiaron la eliminación de ruido en señales de seismocardiografía mediante dos acelerómetros triaxiales, mostrando que la acelerometría puede proporcionar información auxiliar para identificar perturbaciones mecánicas \citeA{Luu2018}. Posteriormente, Yu y Liu propusieron un filtro adaptativo basado en Recursive Least Squares para reducir artefactos de movimiento en seismocardiografía, con una precisión de detección de latidos de hasta 98\,\% en las condiciones evaluadas \citeA{Yu2020}.
+
+En cuanto a sistemas embebidos e IoT, investigaciones recientes han demostrado la viabilidad de implementar fonendoscopios inalámbricos mediante plataformas de bajo costo. Rathod et al. proponen una arquitectura basada en micrófono MEMS y ESP32 para adquisición y transmisión de sonidos cardíacos y pulmonares \citeA{Rathod2026}. De manera similar, el sistema Smart Stethoscope utiliza el micrófono MEMS INMP441 y un ESP32, incorporando almacenamiento, comunicación MQTT y aprendizaje automático para clasificación de sonidos cardíacos \citeA{Nandhitha2025}. Esta propuesta presenta especial relación con la arquitectura planteada.
+
+Otros trabajos han ampliado estas capacidades. Șerbănescu et al. desarrollaron un fonendoscopio digital con procesamiento de señales orientado a aplicaciones IoMT, utilizando dos micrófonos \citeA{Serbanescu2024}. Taye et al. propusieron una arquitectura de fonendoscopio digital con inteligencia artificial, conectividad inalámbrica y clasificación automática de sonidos \citeA{Taye2024}. Por su parte, Mathew et al. utilizaron modelos fundacionales sobre señales de fonocardiografía y electrocardiografía para la detección de enfermedades cardiovasculares, mostrando el potencial de los fonendoscopios digitales como plataformas multimodales \citeA{Mathew2024}.
+
+En el ámbito comercial, Eko Health representa una referencia de integración entre auscultación, procesamiento digital e inteligencia artificial. Su plataforma incorpora amplificación, cancelación activa de ruido, visualización de señales, conectividad y herramientas de IA \citeA{EkoHealth2026}. En 2025, van der Harst y Nathoe analizaron el Eko CORE 500 y destacaron la integración de auscultación digital, ECG, visualización, conectividad e inteligencia artificial \citeA{VanDerHarst2025}.
+
+En conjunto, los antecedentes evidencian cuatro tendencias: procesamiento digital para separación de sonidos, integración multimodal de sensores, implementación de plataformas embebidas e IoT, y aplicación creciente de inteligencia artificial. Estas líneas suelen abordarse por separado. El presente proyecto busca integrarlas en un prototipo académico de menor complejidad, utilizando un sensor acústico MEMS como canal principal y señales PPG y acelerométricas como información complementaria para la diferenciación preliminar de sonidos cardíacos y pulmonares. La propuesta no pretende realizar diagnóstico clínico mediante IA, sino establecer una plataforma experimental de adquisición y procesamiento multimodal de bajo costo.
+
+\section{Bases teóricas}
+
+Las bases teóricas toman como referencia principal el trabajo de Castro Ramírez, cuya estructura aborda la fisiología cardíaca, la fisiología respiratoria, los sonidos producidos por ambos sistemas, la Transformada Discreta Wavelet y la implementación de algoritmos de procesamiento en hardware \citeA{CastroRamirez2010}. A partir de esta estructura, los fundamentos se organizan en los siguientes componentes.
+
+\subsection{Auscultación y fonendoscopia digital}
+
+La auscultación consiste en la evaluación de sonidos producidos por diferentes órganos y sistemas fisiológicos. En el tórax permite obtener información relacionada principalmente con el funcionamiento cardíaco y respiratorio. Durante la auscultación torácica existe la posibilidad de que diferentes fuentes sonoras estén presentes simultáneamente. Castro Ramírez señala que las señales obtenidas pueden encontrarse mezcladas con sonidos ambientales y con otras señales fisiológicas, dependiendo de la posición de adquisición \citeA{CastroRamirez2010}.
+
+El fonendoscopio digital transforma la información acústica en una señal eléctrica digital que puede ser almacenada, filtrada, analizada y transmitida. Esto permite incorporar capacidades no disponibles en el instrumento acústico convencional, como visualización de la señal, registro temporal, procesamiento digital y comunicación inalámbrica \citeA{Littmann2020}.
+
+\subsection{Fisiología cardíaca y ciclo cardíaco}
+
+El corazón genera fenómenos mecánicos y acústicos asociados con el ciclo cardíaco. Los sonidos cardíacos principales corresponden a S1 y S2, relacionados con los eventos valvulares que ocurren durante dicho ciclo. Desde el punto de vista de la instrumentación biomédica, estos sonidos constituyen señales de baja amplitud que requieren una sensibilidad adecuada y una relación señal-ruido suficiente para su análisis \citeA{Giordano2019,CastroRamirez2010}.
+
+\subsection{Sonidos pulmonares}
+
+Los sonidos pulmonares se originan principalmente por el movimiento del aire a través del sistema respiratorio. Durante la auscultación pueden identificarse sonidos respiratorios normales y sonidos adicionales asociados con alteraciones de las vías respiratorias \citeA{Pasterkamp1997}. Para el proyecto resulta fundamental considerar que los sonidos pulmonares pueden encontrarse simultáneamente con los sonidos cardíacos en la señal adquirida. Esta superposición constituye la principal dificultad de procesamiento que se pretende abordar.
+
+\subsection{Superposición de señales cardíacas y pulmonares}
+
+La señal acústica adquirida durante la auscultación puede modelarse como una combinación de varias fuentes:
+
+\begin{equation}
+    x(t) = s_c(t) + s_p(t) + n(t),
+    \label{eq:mezcla-senales}
+\end{equation}
+
+donde $x(t)$ es la señal acústica adquirida; $s_c(t)$ corresponde a la componente cardíaca; $s_p(t)$ a la componente pulmonar; y $n(t)$ representa el ruido y los artefactos de adquisición. Esta condición convierte el problema en una tarea de separación de fuentes y procesamiento digital de señales. El documento de referencia analiza alternativas como filtrado adaptativo, filtrado estadístico, análisis de componentes independientes y transformada Wavelet \citeA{Iyer1986,Hadjileontiadis1997,Hadjileontiadis1998,Pourazad2005,Mallat1998}.
+
+\subsection{Filtrado y reducción de ruido}
+
+Las señales biomédicas pueden estar afectadas por ruido ambiental, interferencias electrónicas y artefactos relacionados con el movimiento. El filtrado adaptativo constituye una de las técnicas estudiadas históricamente para reducir la interferencia de sonidos cardíacos sobre señales pulmonares \citeA{Iyer1986,Hadjileontiadis1997,AlNaggar2013,Nersisson2017}. Estas investigaciones constituyen antecedentes para comprender el problema de separación y reducción de interferencias, aunque el proyecto no se limita a una única técnica de filtrado.
+
+\subsection{Transformada Discreta Wavelet}
+
+La Transformada Discreta Wavelet permite representar una señal mediante diferentes niveles de resolución temporal y frecuencial. La técnica resulta particularmente útil para señales no estacionarias, como las fisiológicas. Castro Ramírez utilizó DWT mediante análisis multirresolución para separar los componentes cardíacos y pulmonares: la señal cardíaca pudo identificarse de manera efectiva en niveles superiores de descomposición, mientras que la señal pulmonar conservó componentes cardíacos \citeA{CastroRamirez2010,Mallat1998}. La utilización de esta técnica también ha sido estudiada para la reducción del ruido cardíaco presente en señales pulmonares \citeA{Hadjileontiadis1998}.
+
+\subsection{Sensor acústico MEMS}
+
+Los micrófonos MEMS permiten la adquisición de señales acústicas mediante dispositivos de reducido tamaño y fácil integración con sistemas embebidos. En el presente proyecto se selecciona el INMP441 como sensor acústico principal, cuya función es capturar simultáneamente los componentes cardíacos y pulmonares presentes durante la auscultación \citeA{INMP441}. El uso de sensores MEMS en fonendoscopios digitales aparece también en trabajos recientes desarrollados con INMP441 y ESP32 \citeA{Nandhitha2025}.
+
+\subsection{Fotopletismografía}
+
+La fotopletismografía es una técnica óptica que permite registrar variaciones en el volumen sanguíneo mediante la interacción de luz y tejido biológico. En este proyecto, la PPG no constituye la señal principal de auscultación: proporciona una referencia fisiológica independiente para contrastar la frecuencia cardíaca obtenida a partir de la señal acústica \citeA{MAX30102}. El uso de múltiples modalidades de adquisición constituye una tendencia presente en los fonendoscopios inteligentes actuales \citeA{Park2022}.
+
+\subsection{Seismocardiografía y acelerometría}
+
+La seismocardiografía permite registrar las vibraciones mecánicas producidas por la actividad cardíaca mediante sensores de aceleración colocados sobre el tórax. Los acelerómetros también permiten identificar movimientos externos capaces de contaminar las señales fisiológicas \citeA{Jain2016,Centracchio2023,Andreozzi2022}. Los trabajos de Luu y Dinh y de Yu y Liu demuestran la utilidad de la acelerometría como fuente de información para caracterizar y reducir artefactos de movimiento \citeA{Luu2018,Yu2020}. En el proyecto, el MPU6050 se utiliza como canal auxiliar para detectar movimiento y generar información sobre condiciones de adquisición potencialmente contaminadas \citeA{MPU6050}.
+
+\subsection{Integración de las bases teóricas con el sistema propuesto}
+
+A partir de los fundamentos anteriores, el prototipo puede representarse conceptualmente mediante tres canales:
+
+\begin{itemize}
+    \item \textbf{Canal acústico:} captura la señal principal con el sensor MEMS INMP441.
+    \item \textbf{Canal óptico:} obtiene la referencia de frecuencia cardíaca mediante el sensor PPG MAX30102.
+    \item \textbf{Canal acelerométrico:} registra vibraciones y movimiento mediante el MPU6050.
+\end{itemize}
+
+Los tres canales convergen en el sistema embebido, donde se realizan el procesamiento y el análisis de las señales. La principal diferencia respecto al trabajo de Castro Ramírez es que, mientras aquel estudio se concentró en la separación de la señal acústica mediante DWT y su implementación en FPGA, el presente proyecto complementa el canal acústico con información PPG y acelerométrica \citeA{CastroRamirez2010}. El antecedente demuestra que la separación de la señal cardíaca mediante DWT es viable, pero también evidencia que la separación pulmonar puede conservar componentes cardíacos.
+
+Por lo tanto, la arquitectura multimodal propuesta busca proporcionar información adicional que permita validar la actividad cardíaca mediante PPG e identificar condiciones de movimiento mediante acelerometría, complementando el procesamiento realizado sobre la señal acústica. En conjunto, las bases teóricas sustentan cuatro elementos centrales: la fisiología y las características de los sonidos cardíacos y pulmonares, la adquisición digital mediante sensores MEMS, el procesamiento digital para separación y reducción de ruido, y la integración de múltiples modalidades fisiológicas en una plataforma embebida.
+
+\section{Consideraciones regulatorias y éticas}
+
+El prototipo se declara de uso académico y experimental. No se busca certificación regulatoria INVIMA, FDA o CE, y no está destinado a producción en serie ni a uso clínico real sin desarrollo adicional. Las pruebas se limitan a voluntarios sanos y/o condiciones simuladas, sin finalidad diagnóstica. Cualquier extensión futura hacia telemedicina o análisis automatizado deberá definir previamente criterios de privacidad, consentimiento, trazabilidad de datos y validación clínica.
+
+% !TeX root = ../main.tex

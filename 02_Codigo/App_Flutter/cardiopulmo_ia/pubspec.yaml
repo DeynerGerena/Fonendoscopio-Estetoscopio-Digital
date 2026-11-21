@@ -1,0 +1,17 @@
+name: cardiopulmo_ia
+description: Fonendoscopio digital - cliente para ESP32-C3
+publish_to: none
+version: 0.1.0
+environment:
+  sdk: ">=3.3.0 <4.0.0"
+dependencies:
+  flutter:
+    sdk: flutter
+  provider: ^6.1.2
+  web_socket_channel: ^3.0.1
+  shared_preferences: ^2.3.2
+  path_provider: ^2.1.4
+  audioplayers: ^6.1.0
+  share_plus: ^10.1.4
+flutter:
+  uses-material-design: true

@@ -1,0 +1,38 @@
+\chapter{Diseño Metodológico}\label{metod}
+
+El proyecto se desarrolla bajo un enfoque de investigación tecnológica aplicada, con una progresión metodológica en capas: primero la arquitectura general del sistema, luego la selección de componentes y finalmente el diseño detallado de cada etapa. La definición del alcance y de las etapas se apoya en la metodología de la investigación descrita por \citeA{HernandezSampieri2014} y \citeA{Arias2012}. El desarrollo completo del prototipo, desde la consolidación del estado del arte hasta las pruebas de validación de banco, se plantea para ejecutarse dentro de un semestre académico, conforme al alcance definido para la asignatura.
+
+\section{Población y muestra}
+
+La población corresponde a personas cuyos sonidos cardiopulmonares puedan ser adquiridos mediante el prototipo. Debido al carácter académico y de validación de concepto del proyecto, la muestra estará constituida por los integrantes del grupo y/o voluntarios sanos disponibles para pruebas controladas. Las pruebas no tendrán finalidad diagnóstica ni sustituirán una evaluación clínica. La validación se limitará al funcionamiento técnico del prototipo y a la comparación de las señales obtenidas mediante los diferentes canales.
+
+\section{Técnicas e instrumentos}\label{objetivo1}
+
+Las principales técnicas son la revisión documental, la adquisición digital de señales, la observación experimental y la comparación de resultados. Los instrumentos principales son:
+
+\begin{itemize}
+    \item Sensor acústico MEMS INMP441 para la adquisición de sonidos cardiopulmonares \cite{INMP441}.
+    \item Sensor MAX30102 para la adquisición de señal PPG como referencia independiente de frecuencia cardíaca \cite{MAX30102}.
+    \item Acelerómetro MPU6050 para la adquisición de señal mecánica y la detección de movimiento \cite{MPU6050}.
+    \item ESP32-S3 como unidad de adquisición y procesamiento \cite{ESP32S3}.
+    \item Software de desarrollo y procesamiento digital de señales.
+    \item Instrumentos de laboratorio disponibles para pruebas eléctricas y electrónicas.
+\end{itemize}
+
+\section{Fases de desarrollo}\label{objetivo2}
+
+\begin{itemize}
+    \item \textbf{Revisión y consolidación:} análisis del estado del arte, fisiología cardiopulmonar, sensores y técnicas de procesamiento.
+    \item \textbf{Diseño del sistema:} definición de la arquitectura, selección de componentes y diseño de alimentación y acondicionamiento.
+    \item \textbf{Desarrollo del firmware:} configuración de I2S e I2C, adquisición simultánea y procesamiento digital.
+    \item \textbf{Procesamiento de señales:} implementación de filtros para diferenciación cardíaca/pulmonar y cancelación de ruido mediante referencias de movimiento.
+    \item \textbf{Integración:} ensamblaje de sensores, ESP32-S3, interfaz de usuario y estructura mecánica.
+    \item \textbf{Validación:} adquisición simultánea de los tres canales y comparación de la frecuencia cardíaca estimada mediante acústica y SCG respecto a la referencia PPG.
+    \item \textbf{Análisis y documentación:} evaluación de resultados, identificación de limitaciones y elaboración del informe final.
+\end{itemize}
+
+\section{Validación preliminar}\label{objetivo3}
+
+La validación se realiza en banco mediante adquisiciones simultáneas de los tres canales. La frecuencia cardíaca estimada a partir del canal acústico y del canal de seismocardiografía se compara con la frecuencia obtenida del canal PPG, tomada como referencia independiente. Los resultados se analizan en términos de consistencia entre canales, presencia de artefactos de movimiento y efecto de los filtros implementados. Dado que no se cuenta con validación clínica, estos datos se interpretan únicamente como evidencia de funcionamiento técnico del prototipo.
+
+% !TeX root = ../main.tex

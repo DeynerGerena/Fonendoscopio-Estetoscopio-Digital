@@ -1,0 +1,68 @@
+%---------------------------CRONOGRAMA---------------------------------------
+
+\begin{landscape}
+\makeatletter
+\let\ps@plain\ps@mylandscape
+\makeatother
+\chapter{Cronograma}\label{cronograma}
+\thispagestyle{mylandscape}
+\pagestyle{mylandscape}
+
+\renewcommand{\arraystretch}{1.35}
+\setstretch{1}
+\small
+\setlength{\tabcolsep}{4pt}
+\setlength{\LTleft}{0pt}
+\setlength{\LTright}{0pt}
+
+\newcommand{\cronosem}{\cellcolor{sombreado-cronograma}{\color{sombreado-cronograma}\rule{0.65em}{0.65em}}}
+
+El proyecto se desarrollará durante un periodo académico de 16 semanas. Las actividades se organizan de manera secuencial, permitiendo que el diseño, la implementación y la validación del prototipo se desarrollen progresivamente.
+
+\noindent
+\begin{longtable}[ht]
+{@{}>{\justifying\arraybackslash\setlength{\parindent}{0pt}}p{6.5cm}*{8}{>{\centering\arraybackslash}p{1.05cm}}@{}}
+
+\caption{Cronograma de actividades}
+\label{tab:cronograma}\\
+\toprule
+\multirow{2}{6.5cm}{\centering\textbf{Actividad}} & \multicolumn{8}{c}{\textbf{Semanas}} \\
+\cmidrule(lr){2-9}
+ & \textbf{1--2} & \textbf{3--4} & \textbf{5--6} & \textbf{7--8} & \textbf{9--10} & \textbf{11--12} & \textbf{13--14} & \textbf{15--16} \\
+\midrule
+\endfirsthead
+
+\multicolumn{9}{@{}l@{}}{\textit{Tabla \thetable\ (continuación)}} \\
+\toprule
+\multirow{2}{6.5cm}{\centering\textbf{Actividad}} & \multicolumn{8}{c}{\textbf{Semanas}} \\
+\cmidrule(lr){2-9}
+ & \textbf{1--2} & \textbf{3--4} & \textbf{5--6} & \textbf{7--8} & \textbf{9--10} & \textbf{11--12} & \textbf{13--14} & \textbf{15--16} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+
+Revisión bibliográfica y estado del arte & \cronosem & \cronosem &  &  &  &  &  &    \\
+Definición de arquitectura y componentes &  & \cronosem & \cronosem &  &  &  &  &    \\
+Diseño electrónico y alimentación &  &  & \cronosem & \cronosem &  &  &  &    \\
+Desarrollo del firmware &  &  &  & \cronosem & \cronosem &  &  &    \\
+Implementación de filtros y procesamiento DSP &  &  &  &  & \cronosem & \cronosem & \cronosem &    \\
+Integración de sensores y ESP32-S3 &  &  &  &  &  & \cronosem & \cronosem &    \\
+Integración mecánica e interfaz &  &  &  &  &  &  & \cronosem & \cronosem   \\
+Pruebas de adquisición y funcionamiento &  &  &  &  &  &  & \cronosem & \cronosem   \\
+Validación y comparación de señales &  &  &  &  &  &  & \cronosem & \cronosem   \\
+Análisis de resultados &  &  &  &  &  &  &  & \cronosem   \\
+Elaboración y entrega del informe final &  &  &  &  &  &  & \cronosem & \cronosem   \\
+
+\end{longtable}
+
+La fecha de inicio corresponde con la fecha de aprobación del anteproyecto.
+
+\clearpage
+\makeatletter
+\let\ps@plain\ufps@plain@orig
+\makeatother
+\pagestyle{plain}
+\end{landscape}
+
+% !TeX root = ../main.tex
